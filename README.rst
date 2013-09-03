@@ -1,6 +1,9 @@
 keiko
 =====
 
+.. image:: https://badge.fury.io/py/keiko.png
+    :target: http://badge.fury.io/py/keiko
+
 .. image:: https://travis-ci.org/lanius/keiko.png
     :target: https://travis-ci.org/lanius/keiko
 
