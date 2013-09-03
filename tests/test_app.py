@@ -1,3 +1,5 @@
+import sys
+
 import mock
 
 import keiko.app
@@ -21,12 +23,15 @@ class TestApp(object):
         assert self.app.get('/lamps/red').status_code == 200
         assert self.app.get('/lamps/yellow').status_code == 200
         assert self.app.get('/lamps/green').status_code == 200
+        assert self.app.get('/lamps/blue').status_code == 400
 
     def test_set_lamp(self):
         assert self.app.get('/lamps/red/on').status_code == 200
         assert self.app.get('/lamps/yellow/blink').status_code == 200
         assert self.app.get('/lamps/green/quickblink').status_code == 200
         assert self.app.get('/lamps/red/off').status_code == 200
+        assert self.app.get('/lamps/blue/on').status_code == 400
+        assert self.app.get('/lamps/red/light').status_code == 400
 
     def test_set_all_lamps_off(self):
         assert self.app.get('/lamps/off').status_code == 200
@@ -39,6 +44,7 @@ class TestApp(object):
         assert self.app.get('/buzzer/continuous').status_code == 200
         assert self.app.get('/buzzer/intermittent').status_code == 200
         assert self.app.get('/buzzer/off').status_code == 200
+        assert self.app.get('/buzzer/beep').status_code == 400
 
     def test_get_all_dos(self):
         assert self.app.get('/do').status_code == 200
@@ -54,6 +60,8 @@ class TestApp(object):
     def test_set_do(self):
         assert self.app.get('/do/1/on').status_code == 200
         assert self.app.get('/do/2/off').status_code == 200
+        assert self.app.get('/do/0/on').status_code == 400
+        assert self.app.get('/do/1/blink').status_code == 400
 
     def test_get_all_dis(self):
         assert self.app.get('/di').status_code == 200
@@ -79,6 +87,8 @@ class TestApp(object):
         assert self.app.get('/voices/1/play').status_code == 200
         assert self.app.get('/voices/2/repeat').status_code == 200
         assert self.app.get('/voices/3/stop').status_code == 200
+        assert self.app.get('/voices/0/play').status_code == 400
+        assert self.app.get('/voices/1/speak').status_code == 400
 
     def test_set_all_voices_stop(self):
         assert self.app.get('/voices/stop').status_code == 200
@@ -100,3 +110,22 @@ class TestApp(object):
 
     def test_get_version(self):
         assert self.app.get('/version').status_code == 200
+
+
+class TestMain(object):
+
+    def setup(self):
+        self._argv = sys.argv
+        sys.argv = []
+
+    def teardown(self):
+        sys.argv = self._argv
+
+    def test_main_with_default(self):
+        with mock.patch('keiko.app.app.run') as m:
+            sys.argv.extend(['script_path', 'keiko_address'])
+            keiko.app.main()
+            assert keiko.app.app.keiko is not None
+            assert keiko.app.app.debug is False
+            kwargs = m.call_args[1]
+            assert kwargs == {'host': '127.0.0.1', 'port': 8080}

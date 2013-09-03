@@ -57,6 +57,8 @@ class TestClient(object):
     def test_turn_on_lamp_with_mode(self):
         self.client.lamps.yellow.blink()
         assert self.get_sent_command() == 'ACOP -u 1 X2XXXXXX -w 0 -t 0'
+        self.client.lamps.green.quickblink()
+        assert self.get_sent_command() == 'ACOP -u 1 XX3XXXXX -w 0 -t 0'
 
     def test_turn_on_lamp_with_wait_and_time(self):
         self.client.lamps.green.on(wait=2, time=3)
@@ -69,6 +71,10 @@ class TestClient(object):
     def test_turn_off_lamp_with_wait(self):
         self.client.lamps.yellow.off(wait=2)
         assert self.get_sent_command() == 'ACOP -u 1 X0XXXXXX -w 2 -t 0'
+
+    def test_turn_off_all_lamps(self):
+        self.client.lamps.off()
+        assert self.get_sent_command() == 'ACOP -u 1 000XXXXX -w 0 -t 0'
 
     def test_get_buzzer(self):
         self.set_received_message('00000000')
@@ -188,6 +194,7 @@ class TestClient(object):
         assert self.client.voices(9).status == 'stop'
         self.set_received_message('10911010')
         assert self.client.voices(9).status == 'play'
+        assert self.client.voices(10).status == 'stop'
 
     def test_play_voice(self):
         self.client.voices(1).play()
