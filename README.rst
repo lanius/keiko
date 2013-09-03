@@ -1,8 +1,14 @@
 keiko
 =====
 
+.. image:: https://badge.fury.io/py/keiko.png
+    :target: http://badge.fury.io/py/keiko
+
 .. image:: https://travis-ci.org/lanius/keiko.png
     :target: https://travis-ci.org/lanius/keiko
+
+.. image:: https://coveralls.io/repos/lanius/keiko/badge.png
+    :target: https://coveralls.io/r/lanius/keiko
 
 keiko is Python and Web API clients for `Keiko-chan`_.
 
