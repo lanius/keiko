@@ -221,7 +221,3 @@ def main():
     app.debug = args.debug
     host, port = args.server.split(':')
     app.run(host=host, port=int(port))
-
-
-if __name__ == '__main__':
-    main()
