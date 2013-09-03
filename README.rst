@@ -1,6 +1,9 @@
 keiko
 =====
 
+.. image:: https://travis-ci.org/lanius/keiko.png
+    :target: https://travis-ci.org/lanius/keiko
+
 keiko is Python and Web API clients for `Keiko-chan`_.
 
 
@@ -194,6 +197,7 @@ Control voices:
     {
       "result": "success"
     }
+
 
 Caveats
 -------
