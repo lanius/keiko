@@ -7,7 +7,7 @@ python:
 install:
   - pip install coveralls --use-mirrors
 
-script: coverage run setup.py test
+script: coverage run --source=keiko setup.py test
 
 after_success:
     coveralls
