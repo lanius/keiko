@@ -45,36 +45,42 @@ Specify the address of Keiko-chan and instantiate the client:
     >>> address = '192.168.1.2'  # example address of Keiko-chan
     >>> client = keiko.Client(address)
 
-Control lamps:
+Control the lamps:
 
 .. code-block:: python
 
+    >>> client.lamps.green.on()  # turns on the lamp
+    >>> client.lamps.green.status
+    'on'
+    >>> client.lamps.green.off()  # turns off the lamp
     >>> client.lamps.green.status
     'off'
-    >>> client.lamps.yellow.on()
+    >>> client.lamps.yellow.blink()  # blinks the lamp
     >>> client.lamps.yellow.status
-    'on'
-    >>> client.lamps.yellow.off()
-    >>> client.lamps.yellow.status
-    'off'
+    'blink'
+    >>> client.lamps.red.quickblink()  # blinks the lamp quickly
+    >>> client.lamps.red.status
+    'quickblink'
+    >>> client.lamps.off()  # turns off the all lamps
 
 With delay and duration time:
 
 .. code-block:: python
 
-    >>> client.lamps.red.on(wait=2, time=4)
+    >>> client.lamps.red.on(wait=2, time=4)  # wait 2 second, light 2 seconds
 
-Control buzzer:
+Control the buzzer:
 
 .. code-block:: python
 
-    >>> client.buzzer.status
-    'off'
-    >>> client.buzzer.on()
+    >>> client.buzzer.on()  # turns on the buzzer
     >>> client.buzzer.status
     'continuous'
+    >>> client.buzzer.off()  # turns off the buzzer
+    >>> client.buzzer.status
+    'off'
 
-Control direct inputs and outputs:
+Control the direct inputs and outputs:
 
 .. code-block:: python
 
@@ -88,13 +94,18 @@ Control direct inputs and outputs:
     >>> client.do.status
     {1: 'off', 2: 'on', 3: 'off', 4: 'off'}
 
-Control voices:
+Control the voices:
 
 .. code-block:: python
 
     >>> client.voices.status
     'stop'
-    >>> client.voices(10).play()  # play voice #10
+    >>> client.voices(1).play()  # plays #1 voice 
+    >>> client.voices.stop()  # stops the voice 
+    >>> client.voices(5).play(3)  # plays #5 voice 3 times
+    >>> client.voices.stop()
+    >>> client.voices(10).repeat()  # plays #10 voice repeatedly
+    >>> client.voices.stop()
 
 Web API
 ~~~~~~~
@@ -113,7 +124,7 @@ Pass optional parameters to the server:
     $ keiko 192.168.1.2 --server myhost:5000
      * Running on http://myhost:5000/
 
-Control lamps:
+Control the lamps:
 
 .. code-block:: bash
 
@@ -147,7 +158,7 @@ With delay and duration time:
       "result": "success"
     }
 
-Control buzzer:
+Control the buzzer:
 
 .. code-block:: bash
 
@@ -161,7 +172,7 @@ Control buzzer:
       "result": "success"
     }
 
-Control direct inputs and outputs:
+Control the direct inputs and outputs:
 
 .. code-block:: bash
 
@@ -190,7 +201,7 @@ Control direct inputs and outputs:
       "result": "success"
     }
 
-Control voices:
+Control the voices:
 
 .. code-block:: bash
 
