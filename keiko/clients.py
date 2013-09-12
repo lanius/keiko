@@ -2,7 +2,6 @@
 Provides client classes for Keiko-chan.
 """
 
-import collections
 import contextlib
 import socket
 import sys
