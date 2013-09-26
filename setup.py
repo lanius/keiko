@@ -56,6 +56,6 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3'
     ),
-    tests_require=['mock', 'pytest', 'pytest-pep8', 'pytest-flakes'],
+    tests_require=['mock', 'pytest', 'pytest-pep8', 'pytest-flakes', 'pytest-cache'],
     cmdclass = {'test': PyTest},
 )
