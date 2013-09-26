@@ -19,6 +19,13 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
+install_requires = ['flask']
+
+
+if sys.version_info < (2, 7):
+    install_requires.append('argparse')
+
+
 setup(
     name='keiko',
     version=keiko.__version__,
@@ -35,7 +42,7 @@ setup(
             'keiko = keiko.app:main',
         ],
     },
-    install_requires=['flask'],
+    install_requires=install_requires,
     license=open('LICENSE').read(),
     classifiers=(
         'Development Status :: 3 - Alpha',
@@ -44,6 +51,7 @@ setup(
         'Natural Language :: Japanese',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3'
