@@ -15,7 +15,7 @@ class PyTest(TestCommand):
 
     def run_tests(self):
         import pytest
-        errno = pytest.main(self.test_args)
+        errno = pytest.main('keiko tests --pep8 --flakes')
         sys.exit(errno)
 
 
@@ -56,6 +56,6 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3'
     ),
-    tests_require=['pytest', 'mock'],
+    tests_require=['mock', 'pytest', 'pytest-pep8', 'pytest-flakes'],
     cmdclass = {'test': PyTest},
 )
