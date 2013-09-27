@@ -67,7 +67,7 @@ With delay and duration time:
 
 .. code-block:: python
 
-    >>> client.lamps.red.on(wait=2, time=4)  # wait 2 second, light 2 seconds
+    >>> client.lamps.red.on(wait=2, time=4)  # wait 2 second, light 4 seconds
 
 Control the buzzer:
 

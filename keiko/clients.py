@@ -2,12 +2,11 @@
 Provides client classes for Keiko-chan.
 """
 
-import collections
 import contextlib
 import socket
 import sys
 
-from keiko.flags import (
+from .flags import (
     build_lamp_flags, parse_lamp_flags,
     build_buzzer_flags, parse_buzzer_flags,
     build_do_flags, parse_do_flags,

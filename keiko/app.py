@@ -4,7 +4,7 @@ Provides Web API server for Keiko-chan.
 
 from flask import Flask, request, jsonify, abort
 
-from keiko.clients import Client
+from .clients import Client
 
 
 app = Flask(__name__)

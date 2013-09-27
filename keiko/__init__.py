@@ -5,7 +5,9 @@ keiko
 keiko is Python and Web API clients for Keiko-chan.
 """
 
-__version__ = '0.1.1'
+__version__ = '0.2.0'
 
 
-from keiko.clients import Client
+from .clients import Client
+
+__all__ = ['Client']
